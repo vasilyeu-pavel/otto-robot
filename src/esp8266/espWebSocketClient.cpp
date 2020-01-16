@@ -36,12 +36,11 @@
 //     delay(1000);
 //   }
 
-
 //   startWiFi();
 
 //   // server address, port and URL
 // //    webSocket.begin(server, port, host);
-//    webSocket.beginSslWithCA("powerful-falls-48878.herokuapp.com", 443, "/", ENDPOINT_CA_CERT);
+//    webSocket.begin("arduino-websocket-server.herokuapp.com", 80, "/socket");
 
 //   // event handler
 //   webSocket.onEvent(webSocketEvent);
@@ -58,7 +57,6 @@
 // }
 
 // void startWiFi() { // Start a Wi-Fi access point, and try to connect to some given access points. Then wait for either an AP or STA connection
-//   WiFiMulti.addAP("Senla", "eiPeevo7");   // add Wi-Fi networks you want to connect to
 //   WiFiMulti.addAP("Pavel", "123456789");   // add Wi-Fi networks you want to connect to
 
 
