@@ -28,6 +28,7 @@ RR 5==>   -----   ------  <== RL 4
 // SOUND SENSOR PIN //////////////////////////////////////////////////////////////////////////
 #define PIN_NoiseSensor A6  //SOUND SENSOR   ANALOG pin (A6)
 
+// declare move func
 void move(int *pMoveID);
 
 ///////////////////////////////////////////////////////////////////
@@ -39,7 +40,7 @@ int T=1000;              //Initial duration of movement
 
 int moveSize=15;         //Asociated with the height of some movements
 
-int moveID = 0;
+int moveID = 0;          //Move variables
 
 ///////////////////////////////////////////////////////////////////
 //-- Setup ------------------------------------------------------//
@@ -80,6 +81,7 @@ void loop() {
 // -- Function to execute the right movement according the movement command received.
 void move(int *pMoveID) {
   switch (*pMoveID) {
+    // simple movements //////////////////////////////////////////////////////////////////////////
     case 0:
       Otto.home();
       break;
@@ -95,6 +97,7 @@ void move(int *pMoveID) {
     case 4: //M 4 1000 
       Otto.turn(1,T,-1);
       break;
+    //  grouped movements ////////////////////////////////////////////////////////////////////////
     case 5: //M 5 1000 30 
       Otto.updown(1,T,moveSize);
       break;
@@ -146,6 +149,11 @@ void move(int *pMoveID) {
     case 21: //M 20 500 15
       Otto.shakeLeg(1,T,1);
       break;
+    case 25: 
+      Otto.hello();
+      moveID = 0;
+      break;
+   //  dancing  //////////////////////////////////////////////////////////////////////////
     case 22: 
       Otto.randomDancing();
       break;
@@ -155,14 +163,11 @@ void move(int *pMoveID) {
     case 24: 
       Otto.crazyDance();
       break;
-    case 25: 
-      Otto.hello();
-      moveID = 0;
-      break;
     case 26: 
       Otto.michaelJacksonDance();
       moveID = 0;
       break;
+    //  sounds  //////////////////////////////////////////////////////////////////////////
     case 30: 
       Otto.sing(S_sad);
       moveID = 0;
@@ -207,6 +212,7 @@ void move(int *pMoveID) {
       Otto.sing(S_superHappy);
       moveID = 0;
       break;
+    //  other movements  ////////////////////////////////////////////////////////////////////////
     case 41: 
       // run forward
       Otto.walk(1,300,1);
@@ -221,6 +227,8 @@ void move(int *pMoveID) {
     case 44:
       Otto.turn(1,300,-1);
       break;
+   //  random dancing  ////////////////////////////////////////////////////////////////////////
+   //  receive bit rate from music by websocket [type int]from 1 to 9 /////////////////////////
     case 50:
       Otto.randomDancing(false, 1000);
       break;
